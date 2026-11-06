@@ -1,0 +1,13 @@
+# The dsh-plugin-github-installer bundle patch: one tool row that adds a
+# GitHub-direct plugin installer on top of the profile's existing plugin
+# manager. It mounts the same `pluginManager` service the official
+# plugin_manager tool uses, so installation follows the identical pipeline:
+# parseInstallSpec -> checkGithubConnection -> pnpm install -> bundle reconcile.
+#
+# The tool row is a leaf addition; it never replaces or disables the
+# shipped plugin-manager rows, so both the official catalog and direct
+# GitHub installs remain available side by side.
+
+- insert:
+    - id: plugin-github-installer
+      name: '@deepseek-ai/dsh-plugin-github-installer'
